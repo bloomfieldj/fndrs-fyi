@@ -384,7 +384,7 @@ const Card = (props: CardTypes) => {
                 <p> Ongoing</p>
               ) : (
                 <p>
-                  {formatDate(start_date)} - {formatDate(end_date)}{" "}
+                  {formatDate(start_date)} - {formatDate(end_date)}
                 </p>
               )}
             </Info>
@@ -439,12 +439,7 @@ const Card = (props: CardTypes) => {
                 navigator.clipboard
                   .writeText(
                     `${title} \n${description}\n${url}${
-                      deadline
-                        ? `\nRegister by ${format(
-                            new Date(deadline),
-                            "MMM do yyyy"
-                          )}!`
-                        : null
+                      deadline ? `\nRegister by ${formatDate(deadline)}!` : null
                     }`
                   )
                   .then(
@@ -470,12 +465,7 @@ const Card = (props: CardTypes) => {
                   .share({
                     title: title,
                     text: `${description}${
-                      deadline
-                        ? `\nRegister by ${format(
-                            new Date(deadline),
-                            "MMM do yyyy"
-                          )}!`
-                        : null
+                      deadline ? `\nRegister by ${formatDate(deadline)}!` : null
                     }`,
                     url: url,
                   })
