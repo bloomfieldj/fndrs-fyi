@@ -288,7 +288,13 @@ export type CardTypes = {
 };
 
 const formatDate = (dateString: string) => {
-  return format(new Date(dateString), "dd MMM");
+  const date = new Date(dateString);
+
+  const correctDate = new Date(
+    date.valueOf() + date.getTimezoneOffset() * 60 * 1000
+  );
+
+  return format(correctDate, "MMM do");
 };
 
 const Card = (props: CardTypes) => {
@@ -421,9 +427,7 @@ const Card = (props: CardTypes) => {
               onClick={() => updateClicks()}
             >
               {deadline ? (
-                <span>
-                  Register by {format(new Date(deadline), "MMM do yyyy")}
-                </span>
+                <span>Register by {formatDate(deadline)}</span>
               ) : (
                 <span>Register</span>
               )}
